@@ -1,11 +1,15 @@
 package org.techreturners.exercises;
 
+import com.google.gson.internal.bind.util.ISO8601Utils;
 import org.techreturners.data_models.Car;
 import org.techreturners.data_models.Person;
 import org.techreturners.mockdata.MockData;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Exercise002 {
 
@@ -22,6 +26,11 @@ public class Exercise002 {
         // Please return the results from the lowest to the highest age
 
         List<Person> people = MockData.getPeople();
+        people.stream()
+                .sorted(Comparator.comparingInt(Person::age))
+                .forEach(System.out::println);
+        System.out.println("<----------------Exercise002-1--------------->");
+
 
     }
 
@@ -35,6 +44,11 @@ public class Exercise002 {
         List<Car> cars = MockData.getCars();
 
         // write your solution here
+        cars.stream()
+                .sorted(Comparator.comparing(Car::year))
+                .sorted(Comparator.comparing(Car::make))
+                .forEach(System.out::println);
+        System.out.println("<----------------Exercise002-2--------------->");
     }
 
 
@@ -46,6 +60,13 @@ public class Exercise002 {
         List<Car> cars = MockData.getCars();
 
         // write your solution here
+        cars.stream()
+                .filter(car -> car.colour().equalsIgnoreCase("red"))
+                .sorted((car1, car2) -> (car2.price().compareTo(car1.price())))
+                .limit(10)
+                .forEach(System.out::println);
 
+
+        System.out.println("<----------------Exercise002-3--------------->");
     }
 }

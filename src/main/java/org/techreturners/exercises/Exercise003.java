@@ -22,7 +22,15 @@ public class Exercise003 {
         List<Car> cars = MockData.getCars();
 
         // write your solution here
+        cars.stream()
+                .filter(car -> car.price() < 20000)
+                .filter(car -> car.year() == 1995)
+                .forEach(System.out::println);
 
     }
+
 }
+
+
+
 

@@ -4,7 +4,7 @@
 
 # Log file
 *.log
-
+.idea/
 # BlueJ files
 *.ctxt
 
@@ -68,6 +68,8 @@ buildNumber.properties
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
+.idea/misc.xml
+.idea/
 
 # Gradle
 .idea/**/gradle.xml

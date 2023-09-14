@@ -2,10 +2,12 @@ package org.techreturners.exercises;
 
 import org.techreturners.data_models.Car;
 import org.techreturners.data_models.Person;
+import org.techreturners.data_models.PersonDTO;
 import org.techreturners.mockdata.MockData;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Exercise004 {
 
@@ -22,7 +24,11 @@ public class Exercise004 {
         List<Car> cars = MockData.getCars();
 
         // write your solution here
-
+       double averagePriceInDecimal =  cars.stream()
+                .mapToDouble(Car::price)
+                .average().orElse(0.0);
+       long averagePrice =  Math.round(averagePriceInDecimal);
+       System.out.println(averagePrice);
     }
 
     public static void dataFilteringAndTransformation() throws IOException {
@@ -34,6 +40,11 @@ public class Exercise004 {
         List<Person> people = MockData.getPeople();
 
         // write your solution here
+        people.stream()
+                .filter(person -> person.age() > 65)
+                .map(PersonDTO::map)
+                .forEach(System.out::println);
+
     }
 
 

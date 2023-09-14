@@ -6,6 +6,7 @@ import org.techreturners.mockdata.MockData;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Exercise001 {
 
@@ -23,7 +24,17 @@ public class Exercise001 {
         // I have provided you with the list of cars to find these from below:
         List<Car> cars = MockData.getCars();
 
+
         // write your solution here
+        List<Car> filteredcarlist = cars.stream()
+                .filter(car -> car.year() < 2001)
+                .filter(car -> car.price() <= 30000)
+                .filter(car -> car.colour().equalsIgnoreCase("green"))
+                .toList();
+        //        .forEach(System.out::println);
+        filteredcarlist.forEach(car -> System.out.println(car.year()));
+        System.out.println("<----------------Exercise001-1--------------->");
+
     }
 
     public static void findPerson() throws IOException {
@@ -35,6 +46,13 @@ public class Exercise001 {
         List<Person> people = MockData.getPeople();
 
         // write your solution here
+        people.stream()
+                .filter(person -> person.gender().equalsIgnoreCase("male"))
+                .filter(person -> person.age() > 30)
+                .filter(person -> person.firstName().startsWith("A"))
+                .filter(person -> person.lastName().startsWith("M"))
+                .forEach(System.out::println);
+        System.out.println("<----------------Exercise001-2--------------->");
 
     }
 }
